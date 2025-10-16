@@ -9,13 +9,14 @@
     </head>
     <body>
         <header>
-            <h1>Крутой сайт</h1>
-            <nav></nav>
-                    <li><a href="{% url 'home' %}"> Главная </a></li>
-            </nav>
+            <div class="header-content">
+                <h1>Движимость.kz</h1>
+                <a href="{% url 'home' %}"> Главная </a></li>
+            </div>
+
         </header>
+        <img src="{% static 'ad.jpg' %}" class="ad" alt="ad">
         {% block content %}
-        <!-- Page content goes here -->
         {% endblock %}
     </body>
 </html>
