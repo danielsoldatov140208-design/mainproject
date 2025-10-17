@@ -9,13 +9,19 @@
     </head>
     <body>
         <header>
-            <div class="header-content">
-                <h1>Движимость.kz</h1>
-                <a href="{% url 'home' %}"> Главная </a></li>
-            </div>
+             <div class="header-content">
+                 <h1 class="logo">Движимость.kz</h1>
+
+                 <nav class="nav-links">
+                 <a href="/">Главная</a>
+                 <a href="{% url 'sale' %}">Продажа</a>
+                 <a href="#">Аренда</a>
+                 <a href="#">Контакты</a>
+                 </nav>
+             </div>
 
         </header>
-        <img src="{% static 'ad.jpg' %}" class="ad" alt="ad">
+        <img src="{% static 'ad.jpg' %}" class="ad" alt="реклама">
         {% block content %}
         {% endblock %}
     </body>

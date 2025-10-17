@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
+{% load static %}   
 {% block title %}Главная страница{% endblock %}
 {% block extra_head %}
 {% endblock %}
 {% block content %}
-<h2>тест</h2>
+<div class="listings">
+  <div class="card">
+    <img src="{% static 'house1.jpeg' %}" alt="Квартира">
+    <h3>2-комнатная квартира</h3>
+    <p>г. Алматы, ул. Абая 55</p>
+    <p class="price">45 000 000 ₸</p>
+    <a href="#" class="btn">Подробнее</a>
+  </div>
+
+  <div class="card">
+    <img src="{% static 'house2.jpg' %}" alt="Дом">
+    <h3>Дом с видом на горы</h3>
+    <p>г. Алматы, мкр. Кок-Тобе</p>
+    <p class="price">120 000 000 ₸</p>
+    <a href="#" class="btn">Подробнее</a>
+  </div>
+
+  <div class="card">
+    <img src="{% static 'house3.jpeg' %}" alt="Квартира">
+    <h3>1-комнатная квартира</h3>
+    <p>г. Астана, пр. Абылай хана</p>
+    <p class="price">25 000 000 ₸</p>
+    <a href="#" class="btn">Подробнее</a>
+  </div>
+</div>
 {% endblock %}
