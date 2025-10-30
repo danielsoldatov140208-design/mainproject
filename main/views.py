@@ -6,6 +6,11 @@ from django.shortcuts import redirect
 from django.contrib.auth import login
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
+from .forms import UnlRegisterForm
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+
 
 def home(request):
     return render(request, 'main.html')
@@ -18,13 +23,14 @@ def user_profile(request, username):
     user_obj = get_object_or_404(User, username=username)
     return render(request, 'profile.html', {'user_obj': user_obj})
 
-def register_view(request):
+
+def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UnlRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user) 
-            return redirect('home') 
+            login(request, user)  # <-- авторизация сразу после регистрации
+            return redirect('home')
     else:
-        form = UserCreationForm()
+        form = UnlRegisterForm()
     return render(request, 'register.html', {'form': form})
