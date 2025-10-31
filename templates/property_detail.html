@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ property.title }}{% endblock %}
+
+{% block content %}
+  <h2>{{ property.title }}</h2>
+  {% if property.image %}
+    <img src="{{ property.image.url }}" alt="{{ property.title }}" width="400">
+  {% endif %}
+
+  <p><strong>Цена:</strong> {{ property.price }} тенге</p>
+  <p><strong>Описание:</strong> {{ property.description }}</p>
+  <p><strong>Продавец:</strong> {{ property.owner.username }}</p>
+
+  <a href="{% url 'sale' %}">← Вернуться к списку</a>
+
+  {% if request.user == property.owner %}
+    <form action="{% url 'delete_property' property.id %}" method="GET" style="display:inline;">
+      <button type="submit" style="color:red; background:none; border:none; cursor:pointer;">
+        Удалить
+      </button>
+    </form>
+  {% endif %}
+{% endblock %}

@@ -42,7 +42,7 @@ def register(request):
 @login_required
 def add_property(request):
     if request.method == 'POST':
-        form = AddPropertyForm(request.POST)
+        form = AddPropertyForm(request.POST , request.FILES)
         if form.is_valid():
             property = form.save(commit=False)
             property.owner = request.user
@@ -55,4 +55,22 @@ def add_property(request):
 def sale(request):
     properties = Property.objects.all()
     return render(request, 'sale.html', {'properties': properties})
+
+@login_required
+def delete_property(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+
+    if property_obj.owner != request.user:
+        return HttpResponseForbidden("Вы не можете удалить это объявление.")
+
+    if request.method == "POST":
+        property_obj.delete()
+        return redirect('profile', username=request.user.username)
+
+    return render(request, 'delete_property_confirm.html', {'property': property_obj})
+
+
+def property_detail(request, property_id):
+    property_obj = get_object_or_404(Property, id=property_id)
+    return render(request, 'property_detail.html', {'property': property_obj})
 

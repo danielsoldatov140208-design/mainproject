@@ -13,9 +13,12 @@ class UnlRegisterForm(UserCreationForm):
 class AddPropertyForm(forms.ModelForm):
     class Meta:
         model = Property
-        fields = ['title', 'description', 'price']
+        fields = ['title', 'description', 'price', 'image', 'city', 'residential_complex']
         labels = {
             'title':'название',
             'description':'описание',
             'price':'цена',
+            'image':'изображение',
+            'city':'город', 
+            'residential_complex':'жилой комплекс',
         }

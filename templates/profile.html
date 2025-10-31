@@ -45,7 +45,15 @@
       {% for prop in user_properties %}
         <li>
           <strong>{{ prop.title }}</strong> — {{ prop.price }} золота<br>
+          {% if prop.image %}
+            <img src="{{ prop.image.url }}" alt="{{ prop.title }}" width="200">
+          {% endif %}
           {{ prop.description }}
+          {% if request.user == prop.owner %}
+             <form action="{% url 'delete_property' prop.id %}" method="GET" style="display:inline;">
+             <button type="submit" style="color:red; background:none; border:none; cursor:pointer;">Удалить</button>
+             </form>
+          {% endif %}
         </li>
       {% endfor %}
     </ul>

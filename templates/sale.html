@@ -3,14 +3,31 @@
 {% block extra_head %}
 {% endblock %}
 {% block content %}
-<h1>Все объявления</h1>
+<style>
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color:black;
+  }
+  a{color:black;
+  }
+</style>
+<h2>Все объявления</h2>
+
 <ul>
   {% for prop in properties %}
-    <li>
+    <li class="property">
+      {% if prop.image %}
+        <img src="{{ prop.image.url }}" alt="{{ prop.title }}" width="200">
+      {% endif %}
+
       <strong>{{ prop.title }}</strong> — {{ prop.price }} тенге<br>
-      Продавец: {{ prop.owner.username }}
+      Продавец: {{ prop.owner.username }}<br>
+
+      <a href="{% url 'property_detail' prop.id %}">Подробнее</a>
     </li>
+  {% empty %}
+    <p>Нет доступных объявлений.</p>
   {% endfor %}
 </ul>
-
 {% endblock %}

@@ -13,4 +13,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('register/', views.register, name='register'),
     path('add_property/', views.add_property, name='add_property'),
+    path('property/<int:property_id>/delete/', views.delete_property, name='delete_property'),
+    path('property/<int:property_id>/', views.property_detail, name='property_detail'),
+
+
 ]
