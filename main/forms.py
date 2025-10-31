@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import UnlUser
+from .models import UnlUser, Property
 
 
 class UnlRegisterForm(UserCreationForm):
@@ -9,3 +9,13 @@ class UnlRegisterForm(UserCreationForm):
     class Meta:
         model = UnlUser
         fields = ['username', 'email', 'password1', 'password2']
+
+class AddPropertyForm(forms.ModelForm):
+    class Meta:
+        model = Property
+        fields = ['title', 'description', 'price']
+        labels = {
+            'title':'название',
+            'description':'описание',
+            'price':'цена',
+        }

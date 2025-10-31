@@ -3,5 +3,14 @@
 {% block extra_head %}
 {% endblock %}
 {% block content %}
-<h2>тест</h2>
+<h1>Все объявления</h1>
+<ul>
+  {% for prop in properties %}
+    <li>
+      <strong>{{ prop.title }}</strong> — {{ prop.price }} тенге<br>
+      Продавец: {{ prop.owner.username }}
+    </li>
+  {% endfor %}
+</ul>
+
 {% endblock %}
